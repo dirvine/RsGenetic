@@ -36,8 +36,8 @@ impl TournamentSelector {
     /// * `participants`: must be larger than zero and less than the population size.
     pub fn new(count: usize, participants: usize) -> TournamentSelector {
         TournamentSelector {
-            count: count,
-            participants: participants,
+            count,
+            participants,
         }
     }
 }

@@ -56,7 +56,7 @@ impl<'a, T, F> Simulation<'a, T, F> for Simulator<'a, T, F>
     fn builder(population: &'a mut Vec<T>) -> SimulatorBuilder<'a, T, F> {
         SimulatorBuilder {
             sim: Simulator {
-                population: population,
+                population,
                 iter_limit: IterLimit::new(100),
                 selector: Box::new(MaximizeSelector::new(3)),
                 earlystopper: None,
@@ -113,8 +113,8 @@ impl<'a, T, F> Simulation<'a, T, F> for Simulator<'a, T, F>
         self.duration = match self.duration {
             Some(x) => {
                 let elapsed = time_start.elapsed();
-                let y = elapsed.as_secs() as NanoSecond * 1000_000_000 +
-                        elapsed.subsec_nanos() as NanoSecond;
+                let y = elapsed.as_secs() as NanoSecond * 1_000_000_000 +
+                        i64::from(elapsed.subsec_nanos());
                 Some(x + y)
             }
             None => None,
